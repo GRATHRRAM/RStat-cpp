@@ -11,9 +11,15 @@ class Graphics {
     GetStats *StatsPtr;
     NormalRes Normal = NormalRes(100,100);
 
+    float Time = 0.f;
+    float RefreshTime = 5.f;
+
     NormalText GameName;
-    NormalText CurrentPlayers;
     NormalText Creator;
+    NormalText CreatedAndUpdated;
+    NormalText CurrentPlayers;
+    NormalText Visits;
+    NormalText FavoritedCount;
 
     public:
     Graphics(GetStats *StatsPtr);
