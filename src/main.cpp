@@ -1,7 +1,12 @@
+#ifdef WIN32
 #include <raylib_win32.h>
-#include "GetStats.hpp"
-#include "NoGui.hpp"
-#include "Graphics/Raylib.hpp"
+#endif
+
+#include "RobloxData/GetStats.hpp"
+#include "TerminalGraphics/NoGui.hpp"
+#include "Graphics/Graphics.hpp"
+
+#include <iostream>
 
 int main(int argc, char **argv) {
     std::string universeId = "8353903143";

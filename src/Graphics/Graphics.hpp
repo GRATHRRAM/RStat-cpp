@@ -1,7 +1,7 @@
 #pragma once
 #include <raylib_win32.h>
 #include <raylib.h>
-#include "../GetStats.hpp"
+#include "../RobloxData/GetStats.hpp"
 
 class Graphics {
     private:

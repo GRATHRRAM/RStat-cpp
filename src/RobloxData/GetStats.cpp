@@ -1,5 +1,6 @@
 #include "GetStats.hpp"
 #include <curl/curl.h>
+#include <iostream>
 
 // Callback function to collect the HTTP response into a std::string
 size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
