@@ -3,10 +3,14 @@
 
 void Graphics::Loop() {
     while(!WindowShouldClose()) {
+        Normal.SetResolution(GetScreenWidth(), GetScreenHeight());
+        CurrentPlayers.Text = "Current Players: " + std::to_string(StatsPtr->Get().Playing);
+
         BeginDrawing();
             ClearBackground(RAYWHITE);
-            DrawText(_StatsPtr->Get().Name.c_str(), 10, 10, 20, BLACK);
-            DrawText(std::to_string(_StatsPtr->Get().Playing).c_str(), 100, 100, 20, BLACK);
+            GameName.Draw(Normal);
+            Creator.Draw(Normal);
+            CurrentPlayers.Draw(Normal);
         EndDrawing();
     }
 }

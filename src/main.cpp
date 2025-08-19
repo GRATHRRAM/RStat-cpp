@@ -16,8 +16,14 @@ int main(int argc, char **argv) {
         std::string arg = argv[i];
         if (arg == "--universeid" && i + 1 < argc) {
             universeId = argv[++i];
+        } else if (arg == "--unid" && i + 1 < argc) {
+            universeId = argv[++i];
         } else if (arg == "--nogui") {
             UseGui = false;
+        } else if (arg == "--help") {
+            std::cout << "--universeid / --unid # Use To Set Universe ID\n"
+                      << "--nogui # Uses Terminal As Output (def refresh 1 sec, clears screen)\n";
+            return 0;
         }
     }
 

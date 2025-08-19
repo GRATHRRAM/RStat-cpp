@@ -3,11 +3,20 @@
 #include <raylib.h>
 #include "../RobloxData/GetStats.hpp"
 
-class Graphics {
+#include "NormalRes.hpp"
+#include "NormalText.hpp"
+
+class Graphics { 
     private:
-    GetStats *_StatsPtr;
+    GetStats *StatsPtr;
+    NormalRes Normal = NormalRes(100,100);
+
+    NormalText GameName;
+    NormalText CurrentPlayers;
+    NormalText Creator;
+
     public:
-    Graphics(GetStats *_StatsPtr);
+    Graphics(GetStats *StatsPtr);
     ~Graphics();
     void Loop();
 };
