@@ -1,4 +1,5 @@
 #include "GetStats.hpp"
+#include <curl/curl.h>
 
 // Callback function to collect the HTTP response into a std::string
 size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
@@ -6,19 +7,7 @@ size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
     return size * nmemb;
 }
 
-GetStats::GetStats(uint64_t UniverseID) : UniverseID(UniverseID) {
-    curl = curl_easy_init();
-    curl_easy_setopt(curl, CURLOPT_CAINFO, "./curl-ca-bundle.crt");
-}
-
-GetStats::~GetStats() {
-    curl_easy_cleanup(curl);
-}
-
-bool GetStats::InitOk() {
-    if(curl) return OK;
-    return FAILURE;
-}
+GetStats::GetStats(uint64_t UniverseID) : UniverseID(UniverseID) {}
 
 GameStats GetStats::Get() {
     GameStats st = {};
@@ -39,6 +28,13 @@ GameStats GetStats::Get() {
 }
 
 bool GetStats::Update() { //Make a http request
+    CURL* curl;
+    CURLcode res;
+    std::string readBuffer;
+
+    curl = curl_easy_init();
+    curl_easy_setopt(curl, CURLOPT_CAINFO, "./curl-ca-bundle.crt");
+
     if(curl) {
         std::string strURL = std::string("https://games.roproxy.com/v1/games?universeIds=") + std::to_string(UniverseID);
 
@@ -63,5 +59,6 @@ bool GetStats::Update() { //Make a http request
         }
     }
 
+    curl_easy_cleanup(curl);
     return OK;
 }

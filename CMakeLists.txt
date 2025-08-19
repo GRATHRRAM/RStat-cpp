@@ -11,6 +11,6 @@ file(GLOB_RECURSE SOURCE "${CMAKE_SOURCE_DIR}/src/*.cpp")
 
 add_executable(RStats ${SOURCE})
 
-target_link_libraries(RStats PRIVATE curl)
+target_link_libraries(RStats PRIVATE curl raylib m winmm gdi32 user32 kernel32)
 
 add_compile_options(-Wall -Wextra)
