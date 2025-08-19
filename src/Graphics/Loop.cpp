@@ -17,5 +17,11 @@ void Graphics::Loop() {
             Visits.Draw(Normal);
             FavoritedCount.Draw(Normal);
         EndDrawing();
+
+        Time -= GetFrameTime();
+        if(Time <= 0) {
+            Time = RefreshTime;
+            StatsPtr->Update();
+        }
     }
 }

@@ -7,6 +7,7 @@ Graphics::Graphics(GetStats *StatsPtr) : StatsPtr(StatsPtr)  {
     std::string Title = "RStats C++ | " + StatsPtr->Get().Name;
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     InitWindow(800, 600, Title.c_str());
+    SetTargetFPS(30);
 
     StatsPtr->Update();
 

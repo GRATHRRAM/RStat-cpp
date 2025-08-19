@@ -11,8 +11,8 @@ class Graphics {
     GetStats *StatsPtr;
     NormalRes Normal = NormalRes(100,100);
 
-    float Time = 0.f;
     float RefreshTime = 5.f;
+    float Time = RefreshTime;
 
     NormalText GameName;
     NormalText Creator;
