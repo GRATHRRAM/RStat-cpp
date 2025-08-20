@@ -12,13 +12,14 @@ void Graphics::Loop() {
         FavoritedCount.Text = "Favorited Count: " + std::to_string(Stats.Get().FavoritedCount);
 
         BeginDrawing();
-            ClearBackground(RAYWHITE);
-            GameName.Draw(Normal);
-            Creator.Draw(Normal);
-            CreatedAndUpdated.Draw(Normal);
-            CurrentPlayers.Draw(Normal);
-            Visits.Draw(Normal);
-            FavoritedCount.Draw(Normal);
+            ClearBackground(Color{30, 30, 47, 255});
+            BgRect.Draw(Normal);
+            GameName.Draw         (Normal, TextScale, UseFont);
+            Creator.Draw          (Normal, TextScale, UseFont);
+            CreatedAndUpdated.Draw(Normal, TextScale, UseFont);
+            CurrentPlayers.Draw   (Normal, TextScale, UseFont);
+            Visits.Draw           (Normal, TextScale, UseFont);
+            FavoritedCount.Draw   (Normal, TextScale, UseFont);
         EndDrawing();
 
         Time -= GetFrameTime();

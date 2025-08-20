@@ -11,6 +11,7 @@
 int main(int argc, char **argv) {
     std::string universeId = "8353903143";
     bool UseGui = true;
+    bool UseFont = true;
 
     for (int i = 1; i < argc; i++) {
         std::string arg = argv[i];
@@ -20,6 +21,8 @@ int main(int argc, char **argv) {
             universeId = argv[++i];
         } else if (arg == "--nogui") {
             UseGui = false;
+        } else if (arg == "--nofont") {
+            UseFont = false;
         } else if (arg == "--help") {
             std::cout << "--universeid / --unid # Use To Set Universe ID\n"
                       << "--nogui # Uses Terminal As Output (def refresh 1 sec, clears screen)\n";
@@ -32,7 +35,7 @@ int main(int argc, char **argv) {
 
 
     if(UseGui) {
-        Graphics Raylib(std::strtoull(universeId.c_str(), nullptr, 10));
+        Graphics Raylib(std::strtoull(universeId.c_str(), nullptr, 10), UseFont);
         Raylib.Loop();
         std::cout << "Graphics Api: Raylib\n";
     } else {

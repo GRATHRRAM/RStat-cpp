@@ -5,9 +5,11 @@ class NormalRes {
     private:
         int ScreenWidth;
         int ScreenHeight;
+        int StartResX;
+        int StartResY;
     public:
     NormalRes(int ScreenWidth, int ScreenHeight)
-        : ScreenWidth(ScreenWidth), ScreenHeight(ScreenHeight) {}
+        : ScreenWidth(ScreenWidth), ScreenHeight(ScreenHeight), StartResX(ScreenWidth), StartResY(ScreenHeight) {}
 
     Vector2 ToNormalized(int x, int y) const {
         return {
@@ -21,6 +23,10 @@ class NormalRes {
             normX * ScreenWidth,
             normY * ScreenHeight
         };
+    }
+
+    float GetScale() {
+        return static_cast<float>(ScreenWidth) / StartResX;
     }
 
     int GetWidth() const { return ScreenWidth; }
