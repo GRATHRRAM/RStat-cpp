@@ -1,5 +1,6 @@
 #ifdef WIN32
 #include <raylib_win32.h>
+#include <windows.h>
 #endif
 
 #include "RobloxData/GetStats.hpp"
@@ -23,10 +24,16 @@ int main(int argc, char **argv) {
             UseGui = false;
         } else if (arg == "--nofont") {
             UseFont = false;
-        } else if (arg == "--help") {
+        } else if (arg == "--noterm") {
+            #ifdef WIN32
+                HWND hwnd = GetConsoleWindow();
+                ShowWindow(hwnd, SW_HIDE);
+            #endif
+        }else if (arg == "--help") {
             std::cout << "--universeid / --unid # Use To Set Universe ID\n"
                       << "--nogui # Uses Terminal As Output (def refresh 1 sec, clears screen)\n"
-                      << "--nofont # Makes Gui Mode Not Load Font\n";
+                      << "--nofont # Makes Gui Mode Not Load Font\n"
+                      << "--noterm # Windows Only!!! Hides Terminal \n";
             return 0;
         }
     }
