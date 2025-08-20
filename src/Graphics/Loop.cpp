@@ -22,13 +22,15 @@ void Graphics::Loop() {
             FavoritedCount.Draw   (Normal, TextScale, UseFont);
         EndDrawing();
 
-        Time -= GetFrameTime();
-        if(Time <= 0) {
-            Time = RefreshTime;
-            if (!UpdateTask.valid() || UpdateTask.wait_for(std::chrono::seconds(0)) == std::future_status::ready) {
-                UpdateTask = std::async(std::launch::async, [this] {
-                    Stats.Update();
-                });
+        if(RefreshTime > 0) {
+            Time -= GetFrameTime();
+            if(Time <= 0) {
+                Time = RefreshTime;
+                if (!UpdateTask.valid() || UpdateTask.wait_for(std::chrono::seconds(0)) == std::future_status::ready) {
+                    UpdateTask = std::async(std::launch::async, [this] {
+                        Stats.Update();
+                    });
+                }
             }
         }
     }

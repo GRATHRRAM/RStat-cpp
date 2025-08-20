@@ -31,7 +31,7 @@ class Graphics {
 
     void SetupText();
     public:
-    Graphics(uint64_t UniverseID, bool UseFont = true);
+    Graphics(uint64_t UniverseID, float RefreshTime, bool UseFont = true);
     ~Graphics();
     void Loop();
 };

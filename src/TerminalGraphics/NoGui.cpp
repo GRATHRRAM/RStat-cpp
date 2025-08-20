@@ -31,7 +31,7 @@ void NoGui::Loop() {
         Stats.Update();
         GameStats st = Stats.Get();
 
-        Clear();
+        if(RefreshTime > 0) Clear();
         Print(st);
         std::this_thread::sleep_for(std::chrono::duration<double>(RefreshTime));
     } while(RefreshTime > 0);

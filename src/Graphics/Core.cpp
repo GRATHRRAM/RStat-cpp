@@ -1,7 +1,7 @@
 #include "Graphics.hpp"
 #include <string>
 
-Graphics::Graphics(uint64_t UniverseID, bool UseFont) : UseFont(UseFont) {
+Graphics::Graphics(uint64_t UniverseID, float RefreshTime,bool UseFont) : UseFont(UseFont), RefreshTime(RefreshTime) {
     Stats = GetStats(UniverseID);
     bool Done = false; while(!Done) {Done = Stats.Update();}
 

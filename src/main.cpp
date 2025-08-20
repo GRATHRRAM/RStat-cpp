@@ -13,6 +13,7 @@ int main(int argc, char **argv) {
     std::string universeId = "8353903143";
     bool UseGui = true;
     bool UseFont = true;
+    float RefTime = 5;
 
     for (int i = 1; i < argc; i++) {
         std::string arg = argv[i];
@@ -24,6 +25,8 @@ int main(int argc, char **argv) {
             UseGui = false;
         } else if (arg == "--nofont") {
             UseFont = false;
+        } else if (arg == "--reftime") {
+            RefTime = std::stof(argv[++i]);
         } else if (arg == "--url2uni") {
             uint64_t Unid = 0;
             GetUniverseID(Unid, Str2U64(StripURL(std::string(argv[++i]))));
@@ -49,7 +52,8 @@ int main(int argc, char **argv) {
                       << "--noterm  # Windows Only!!! Hides Terminal \n"
                       << "--url2uni # Converts Roblox Link To Universe ID\n"
                       << "--url     # Converts Link To Universe ID and Starts RStats With it\n"
-                      << "--placeid # Converts PlaceID to UniverseID Adn Starts RStats With it\n";
+                      << "--placeid # Converts PlaceID to UniverseID Adn Starts RStats With it\n"
+                      << "--reftime # ex --reftime 5 # Sets Refresh Time if 0 Program Will not refresh\n";
             return 0;
         } else {
             std::cout << "Invalid Arg -> " << arg << "\n" << "Quiting!!!\n";
@@ -62,10 +66,10 @@ int main(int argc, char **argv) {
 
     if(UseGui) {
         std::cout << "Graphics Api: Raylib\n";
-        Graphics Raylib(Str2U64(universeId), UseFont);
+        Graphics Raylib(Str2U64(universeId), RefTime, UseFont);
         Raylib.Loop();
     } else {
-        NoGui Tui(Str2U64(universeId));
+        NoGui Tui(Str2U64(universeId), RefTime);
         Tui.Loop();
     }
     return 0;
