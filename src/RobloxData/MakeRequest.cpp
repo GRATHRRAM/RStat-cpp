@@ -55,6 +55,25 @@ bool GetUniverseID(uint64_t& UniverseID, uint64_t PlaceID) {
     return ret;
 }
 
+bool GetLikes(uint64_t &Likes, uint64_t &DisLikes, uint64_t UniverseID) {
+    json Buff;
+    bool ret = MakeRequest(Buff,
+        std::string("https://games.roproxy.com/v1/games/") +
+        std::to_string(UniverseID) +
+        std::string("/votes")
+    );
+
+    if(!Buff.contains("upVotes") || !Buff.contains("downVotes")) {
+        std::cerr << "Likes Request Failed Data Missing!!!\n";
+        return true;
+    }
+
+    Likes = Buff["upVotes"];
+    DisLikes = Buff["downVotes"];
+
+    return ret;
+}
+
 std::string StripURL(std::string url) {
     const std::string marker = "/games/";
     auto pos = url.find(marker);

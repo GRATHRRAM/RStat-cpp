@@ -13,6 +13,8 @@ void NoGui::Print(GameStats &Stats) {
     std::cout << "Playing: " << Stats.Playing << "\n";
     std::cout << "Visits: " << Stats.Visits << "\n";
     std::cout << "FavoritedCount: " << Stats.FavoritedCount << "\n";
+    std::cout << "Likes: "    << Likes << "\n";
+    std::cout << "Dislikes: " << DisLikes << "\n";
     std::cout << "===============================\n";
 }
 

@@ -16,7 +16,12 @@ class GetStats {
     bool Update(); //Make a http request
 };
 
-uint64_t Str2U64(std::string str);
-bool GetUniverseID(uint64_t &UniverseID, uint64_t PlaceID);
 bool MakeRequest(json &ReturnJson, std::string Url);
+
+uint64_t Str2U64(std::string str);
 std::string StripURL(std::string URL); //Converts Link To PlaceID
+
+bool GetUniverseID(uint64_t &UniverseID, uint64_t PlaceID);
+bool GetLikes(uint64_t &Likes, uint64_t &DisLikes, uint64_t UniverseID);
+
+//https://games.roproxy.com/v1/games/8353903143/votes
