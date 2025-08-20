@@ -1,12 +1,6 @@
-#include "GetStats.hpp"
-#include <curl/curl.h>
+#include "GetRobloxData.hpp"
 #include <iostream>
-
-// Callback function to collect the HTTP response into a std::string
-size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
-    ((std::string*)userp)->append((char*)contents, size * nmemb);
-    return size * nmemb;
-}
+#include <nlohmann/json.hpp>
 
 GetStats::GetStats(uint64_t UniverseID) : UniverseID(UniverseID) {}
 
@@ -28,38 +22,8 @@ GameStats GetStats::Get() {
     return st;
 }
 
-bool GetStats::Update() { //Make a http request
-    CURL* curl;
-    CURLcode res;
-    std::string readBuffer;
-
-    curl = curl_easy_init();
-    curl_easy_setopt(curl, CURLOPT_CAINFO, "./curl-ca-bundle.crt");
-
-    if(curl) {
-        std::string strURL = std::string("https://games.roproxy.com/v1/games?universeIds=") + std::to_string(UniverseID);
-
-        const char* url = strURL.c_str();
-        curl_easy_setopt(curl, CURLOPT_URL, url);
-
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
-
-        res = curl_easy_perform(curl);
-
-        if(res != CURLE_OK) {
-            std::cerr << "curl_easy_perform() failed: " 
-                      << curl_easy_strerror(res) << std::endl;
-        } else {
-            try {
-                Buff = json::parse(readBuffer);
-            } catch (std::exception& e) {
-                std::cerr << "JSON parsing error: " << e.what() << std::endl;
-                return FAILURE;
-            }
-        }
-    }
-
-    curl_easy_cleanup(curl);
-    return OK;
+bool GetStats::Update() {
+    std::string str = std::string("https://games.roproxy.com/v1/games?universeIds=")
+    + std::to_string(UniverseID);
+    return MakeRequest(Buff, str);
 }

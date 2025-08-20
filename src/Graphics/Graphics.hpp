@@ -1,7 +1,7 @@
 #pragma once
 #include <raylib_win32.h>
 #include <raylib.h>
-#include "../RobloxData/GetStats.hpp"
+#include "../RobloxData/GetRobloxData.hpp"
 
 #include "NormalRes.hpp"
 #include "NormalText.hpp"

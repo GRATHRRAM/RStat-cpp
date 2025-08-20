@@ -1,5 +1,5 @@
 #pragma once
-#include "../RobloxData/GetStats.hpp"
+#include "../RobloxData/GetRobloxData.hpp"
 
 class NoGui {
     private:

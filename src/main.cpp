@@ -3,7 +3,7 @@
 #include <windows.h>
 #endif
 
-#include "RobloxData/GetStats.hpp"
+#include "RobloxData/GetRobloxData.hpp"
 #include "TerminalGraphics/NoGui.hpp"
 #include "Graphics/Graphics.hpp"
 
@@ -24,16 +24,35 @@ int main(int argc, char **argv) {
             UseGui = false;
         } else if (arg == "--nofont") {
             UseFont = false;
+        } else if (arg == "--url2uni") {
+            uint64_t Unid = 0;
+            GetUniverseID(Unid, Str2U64(StripURL(std::string(argv[++i]))));
+            std::cout << "UniverseID: " << Unid << "\n";
+            return 0;
+        } else if (arg == "--url") {
+            uint64_t Unid = 0;
+            GetUniverseID(Unid, Str2U64(StripURL(std::string(argv[++i]))));
+            universeId = std::to_string(Unid);
+        } else if (arg == "--placeid") {
+            uint64_t Unid = 0;
+            GetUniverseID(Unid, Str2U64(std::string(argv[++i])));
+            universeId = std::to_string(Unid);
         } else if (arg == "--noterm") {
             #ifdef WIN32
                 HWND hwnd = GetConsoleWindow();
                 ShowWindow(hwnd, SW_HIDE);
             #endif
-        }else if (arg == "--help") {
+        } else if (arg == "--help") {
             std::cout << "--universeid / --unid # Use To Set Universe ID\n"
-                      << "--nogui # Uses Terminal As Output (def refresh 1 sec, clears screen)\n"
-                      << "--nofont # Makes Gui Mode Not Load Font\n"
-                      << "--noterm # Windows Only!!! Hides Terminal \n";
+                      << "--nogui   # Uses Terminal As Output (def refresh 1 sec, clears screen)\n"
+                      << "--nofont  # Makes Gui Mode Not Load Font\n"
+                      << "--noterm  # Windows Only!!! Hides Terminal \n"
+                      << "--url2uni # Converts Roblox Link To Universe ID\n"
+                      << "--url     # Converts Link To Universe ID and Starts RStats With it\n"
+                      << "--placeid # Converts PlaceID to UniverseID Adn Starts RStats With it\n";
+            return 0;
+        } else {
+            std::cout << "Invalid Arg -> " << arg << "\n" << "Quiting!!!\n";
             return 0;
         }
     }
@@ -41,13 +60,12 @@ int main(int argc, char **argv) {
     std::cout << "Universe ID: " << universeId << "\n";
     std::cout << "Gui: " << UseGui << "\n";
 
-
     if(UseGui) {
-        Graphics Raylib(std::strtoull(universeId.c_str(), nullptr, 10), UseFont);
-        Raylib.Loop();
         std::cout << "Graphics Api: Raylib\n";
+        Graphics Raylib(Str2U64(universeId), UseFont);
+        Raylib.Loop();
     } else {
-        NoGui Tui(std::strtoull(universeId.c_str(), nullptr, 10));
+        NoGui Tui(Str2U64(universeId));
         Tui.Loop();
     }
     return 0;
