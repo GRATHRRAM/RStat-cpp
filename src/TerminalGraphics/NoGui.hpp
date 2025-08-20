@@ -3,7 +3,7 @@
 
 class NoGui {
     private:
-        float RefreshTime = 1; //sec (0 == no Refresh)
+        float RefreshTime = 5; //sec (0 == no Refresh)
         bool ClearTerminal = true;
         GetStats Stats;
     public:

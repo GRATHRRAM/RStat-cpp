@@ -25,7 +25,8 @@ int main(int argc, char **argv) {
             UseFont = false;
         } else if (arg == "--help") {
             std::cout << "--universeid / --unid # Use To Set Universe ID\n"
-                      << "--nogui # Uses Terminal As Output (def refresh 1 sec, clears screen)\n";
+                      << "--nogui # Uses Terminal As Output (def refresh 1 sec, clears screen)\n"
+                      << "--nofont # Makes Gui Mode Not Load Font\n";
             return 0;
         }
     }
