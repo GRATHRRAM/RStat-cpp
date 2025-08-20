@@ -8,7 +8,7 @@
 
 class Graphics { 
     private:
-    GetStats *StatsPtr;
+    GetStats Stats;
     NormalRes Normal = NormalRes(100,100);
 
     float RefreshTime = 5.f;
@@ -22,7 +22,7 @@ class Graphics {
     NormalText FavoritedCount;
 
     public:
-    Graphics(GetStats *StatsPtr);
+    Graphics(uint64_t UniverseID);
     ~Graphics();
     void Loop();
 };

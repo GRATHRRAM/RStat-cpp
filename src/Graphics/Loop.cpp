@@ -1,12 +1,15 @@
 #include "Graphics.hpp"
 #include <string>
+#include <future>
+
+std::future<void> UpdateTask;
 
 void Graphics::Loop() {
     while(!WindowShouldClose()) {
         Normal.SetResolution(GetScreenWidth(), GetScreenHeight());
-        CurrentPlayers.Text = "Current Players: " + std::to_string(StatsPtr->Get().Playing);
-        Visits.Text = "Current Visits: " + std::to_string(StatsPtr->Get().Visits);
-        FavoritedCount.Text = "Favorited Count: " + std::to_string(StatsPtr->Get().FavoritedCount);
+        CurrentPlayers.Text = "Current Players: " + std::to_string(Stats.Get().Playing);
+        Visits.Text = "Current Visits: " + std::to_string(Stats.Get().Visits);
+        FavoritedCount.Text = "Favorited Count: " + std::to_string(Stats.Get().FavoritedCount);
 
         BeginDrawing();
             ClearBackground(RAYWHITE);
@@ -21,7 +24,11 @@ void Graphics::Loop() {
         Time -= GetFrameTime();
         if(Time <= 0) {
             Time = RefreshTime;
-            StatsPtr->Update();
+            if (!UpdateTask.valid() || UpdateTask.wait_for(std::chrono::seconds(0)) == std::future_status::ready) {
+                UpdateTask = std::async(std::launch::async, [this] {
+                    Stats.Update();
+                });
+            }
         }
     }
 }

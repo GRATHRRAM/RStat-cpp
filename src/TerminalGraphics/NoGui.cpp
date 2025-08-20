@@ -26,8 +26,8 @@ void NoGui::Clear() {
 
 void NoGui::Loop() {
     do {
-        _StatsPtr->Update();
-        GameStats st = _StatsPtr->Get();
+        Stats.Update();
+        GameStats st = Stats.Get();
 
         Clear();
         Print(st);
