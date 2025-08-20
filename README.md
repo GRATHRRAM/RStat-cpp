@@ -28,8 +28,3 @@ cp ../CopyToBuildFolder/* ./
 ## Screen Shoots
 <img width="355" height="447" alt="image" src="https://github.com/user-attachments/assets/3a339967-8f70-4e47-85af-f5352f0572cc" /> </br>
 <img width="401" height="239" alt="image" src="https://github.com/user-attachments/assets/024bd6e8-2d62-4a19-a765-1fe02fe4d6e3" />
-
-# Road To 1.0
--- Link to unid</br>
--- Link as unid</br>
--- Likes ammout and ratio</br>
