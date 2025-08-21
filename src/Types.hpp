@@ -15,5 +15,7 @@ struct GameStats {
     uint64_t Playing;
     uint64_t Visits;
     uint64_t FavoritedCount;
+    uint64_t UpVotes;
+    uint64_t DownVotes;
     bool DataEmpty;
 };

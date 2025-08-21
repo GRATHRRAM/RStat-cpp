@@ -26,6 +26,8 @@ class Graphics {
     NormalText CurrentPlayers;
     NormalText Visits;
     NormalText FavoritedCount;
+    NormalText Likes;
+    NormalText DisLikes;
 
     NormalBgRect BgRect;
 

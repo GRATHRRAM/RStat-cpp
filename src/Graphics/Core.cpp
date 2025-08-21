@@ -76,6 +76,18 @@ void Graphics::SetupText() {
     FavoritedCount.NormalPos = Vector2{0.5,0.67};
     FavoritedCount.TextColor = Color{200,200,200,255};
     if(UseFont) FavoritedCount.TextFont = GlobalFont;
+
+    Likes.FontSize = 24;
+    Likes.AnchorPoint = Vector2{0.5f,0.5f};
+    Likes.NormalPos = Vector2{0.5,0.74};
+    Likes.TextColor = Color{200,200,200,255};
+    if(UseFont) Likes.TextFont = GlobalFont;
+
+    DisLikes.FontSize = 24;
+    DisLikes.AnchorPoint = Vector2{0.5f,0.5f};
+    DisLikes.NormalPos = Vector2{0.5,0.81};
+    DisLikes.TextColor = Color{200,200,200,255};
+    if(UseFont) DisLikes.TextFont = GlobalFont;
 }
 
 Graphics::~Graphics() {

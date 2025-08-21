@@ -8,8 +8,10 @@ void Graphics::Loop() {
     while(!WindowShouldClose()) {
         Normal.SetResolution(GetScreenWidth(), GetScreenHeight());
         CurrentPlayers.Text = "Current Players: " + std::to_string(Stats.Get().Playing);
-        Visits.Text = "Current Visits: " + std::to_string(Stats.Get().Visits);
+        Visits.Text =         "Current Visits: " + std::to_string(Stats.Get().Visits);
         FavoritedCount.Text = "Favorited Count: " + std::to_string(Stats.Get().FavoritedCount);
+        Likes.Text =          "Likes: " + std::to_string(Stats.Get().UpVotes);
+        DisLikes.Text =       "DisLikes: " + std::to_string(Stats.Get().DownVotes);
 
         BeginDrawing();
             ClearBackground(Color{30, 30, 47, 255});
@@ -20,6 +22,8 @@ void Graphics::Loop() {
             CurrentPlayers.Draw   (Normal, TextScale, UseFont);
             Visits.Draw           (Normal, TextScale, UseFont);
             FavoritedCount.Draw   (Normal, TextScale, UseFont);
+            Likes.Draw            (Normal, TextScale, UseFont);
+            DisLikes.Draw         (Normal, TextScale, UseFont);
         EndDrawing();
 
         if(RefreshTime > 0) {

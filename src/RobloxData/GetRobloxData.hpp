@@ -9,6 +9,8 @@ class GetStats {
     private:
         json Buff;
         uint64_t UniverseID;
+        uint64_t Likes;
+        uint64_t Dislikes;
     public:
     GetStats(uint64_t UniverseID = 8353903143);
 

@@ -17,6 +17,8 @@ GameStats GetStats::Get() {
         st.Visits = Buff["data"][0]["visits"];
         st.Playing = Buff["data"][0]["playing"];
         st.FavoritedCount = Buff["data"][0]["favoritedCount"];
+        st.UpVotes = Likes;
+        st.DownVotes = Dislikes;
     } else st.DataEmpty = true;
 
     return st;
@@ -25,5 +27,5 @@ GameStats GetStats::Get() {
 bool GetStats::Update() {
     std::string str = std::string("https://games.roproxy.com/v1/games?universeIds=")
     + std::to_string(UniverseID);
-    return MakeRequest(Buff, str);
+    return MakeRequest(Buff, str) | GetLikes(Likes, Dislikes, UniverseID);
 }

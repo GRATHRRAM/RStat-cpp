@@ -10,7 +10,7 @@
 
 #include <iostream>
 
-std::string Bool2Str(bool Bool) {return Bool ? "True" : "False";}
+inline std::string Bool2Str(bool Bool) {return Bool ? "True" : "False";}
 
 int main(int argc, char **argv) {
     ArgCheck Arg;
