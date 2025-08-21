@@ -12,7 +12,7 @@ Graphics::Graphics(uint64_t UniverseID, float RefreshTime,bool UseFont) : UseFon
 
     SetTargetFPS(30);
 
-    if(UseFont) GlobalFont = LoadFontEx("Font.ttf", 128, nullptr, 0);
+    if(UseFont) GlobalFont = LoadFontEx("Font.ttf", 64, nullptr, 0);
     else TextScale = 0.9;
 
     Stats.Update();
